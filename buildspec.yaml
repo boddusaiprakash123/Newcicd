@@ -5,11 +5,11 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building Docker image
-      - docker build -t nginx1latest:latest .
+      - docker build -t nginx:latest .
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 918462768359.dkr.ecr.ap-south-1.amazonaws.com
-      - docker tag nginx1latest:latest 918462768359.dkr.ecr.ap-south-1.amazonaws.com/nginx1latest:latest
-      - docker push 918462768359.dkr.ecr.ap-south-1.amazonaws.com/nginx1latest:latest
+      - docker tag nginx:latest 918462768359.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
+      - docker push 918462768359.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
       - echo Build completed on `date`
 
   post_build:
