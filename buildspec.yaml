@@ -16,7 +16,8 @@ phases:
     commands:
       - echo Uploading artifacts to S3 bucket
       - aws s3 cp . s3://artifactscicd1/ --recursive
-      - printf '[{"name":"%s","imageUri":"%s"}]' $IMAGE_REPO_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '{"name":"%s","imageUri":"%s"}' "$IMAGE_REPO_NAME" "$REPOSITORY_URI:$IMAGE_TAG" > imagedefinitions.json
+
 
 artifacts:
   files:
