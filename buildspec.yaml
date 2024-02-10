@@ -14,10 +14,10 @@ phases:
 
   post_build:
     commands:
-      - echo Uploading artifacts to S3 bucket
-      - aws s3 cp . s3://artifactscicd1/ --recursive
-      - printf '{"name":"%s","imageUri":"%s"}' "$IMAGE_REPO_NAME" "$REPOSITORY_URI:$IMAGE_TAG" > imagedefinitions.json
-
+      - echo Generating imagedefinitions.json
+      - printf '[{"name":"nginx1latest","imageUri":"918462768359.dkr.ecr.ap-south-1.amazonaws.com/nginx1latest:latest"}]' > imagedefinitions.json
+      - echo Uploading imagedefinitions.json to S3 bucket
+      - aws s3 cp imagedefinitions.json s3://artifactscicd1/NEWCICD-2/BuildArtif/imagedefinitions.json
 
 artifacts:
   files:
