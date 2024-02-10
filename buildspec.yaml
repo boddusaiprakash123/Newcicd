@@ -20,7 +20,7 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: base_location
+  base-directory: .
   name: newcicd2-backend-build-artifact
   discard-paths: no
 
