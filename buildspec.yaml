@@ -19,7 +19,7 @@ phases:
 
 artifacts:
   files:
-    - '**/*'
+     - imagedefinitions.json
   base-directory: .
   name: newcicd2-backend-build-artifact
   discard-paths: no
