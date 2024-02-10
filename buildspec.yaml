@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building Docker image
+      - docker build -t your-image-name:latest .
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region your-region | docker login --username AWS --password-stdin your-account-id.dkr.ecr.your-region.amazonaws.com
+      - docker tag your-image-name:latest your-account-id.dkr.ecr.your-region.amazonaws.com/your-repository-name:latest
+      - docker push your-account-id.dkr.ecr.your-region.amazonaws.com/your-repository-name:latest
+      - echo Build completed on `date`
+
+  post_build:
+    commands:
+      - echo Uploading artifacts to S3 bucket
+      - aws s3 cp . s3://artifactscicd1/ --recursive
+
+artifacts:
+  files: []
+
